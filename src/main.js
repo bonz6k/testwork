@@ -30,12 +30,12 @@ function test() {
         divLeft.appendChild(spanElement); //создание дочернего span внутри divLeft
         //если в левом текстовом поле есть проверяемая строка или строка пустая, то не подсвечиваем строку
         if((splitRight.indexOf(splitLeft[i]) != -1) || (splitLeft[i] == '')){
-            spanElement.innerText = lineArrayRight[i]; //передаем span текстовое значение строки
+            spanElement.innerText = lineArrayLeft[i]; //передаем span текстовое значение строки
             spanElement.className = 'default'; //задаем для span параметры стиля
         }
         //если проверяемой строки нет, то подсвечиваем строку
         else{
-            spanElement.innerText = lineArrayRight[i]; //передаем span текстовое значение строки
+            spanElement.innerText = lineArrayLeft[i]; //передаем span текстовое значение строки
             spanElement.className = 'green'; //задаем для span параметры стиля
         }
     }
@@ -64,4 +64,3 @@ function reader(){
 	};
 	reader.readAsText(document.querySelector("#uploadLeft")[0].files[0], "UTF-8");
 };
-
