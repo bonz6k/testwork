@@ -1,3 +1,5 @@
+let check = 0;
+
 //функция для сравнения двух текстовых полей
 function test() {
     //инициализация переменных для хранения значений текстовых полей
@@ -14,15 +16,19 @@ function test() {
 
     //нумерация строк
     for (let i = 0; i < splitLeft.length; i++){
-        lineArrayLeft[i] = i+1+'.  ' + splitLeft[i];
+        lineArrayLeft[i] = i+1+'|  ' + splitLeft[i];
     }
     for (let i = 0; i < splitRight.length; i++){
-        lineArrayRight[i] = i+1+'.  ' + splitRight[i];
+        lineArrayRight[i] = i+1+'|  ' + splitRight[i];
     }
 
     //инициализация блоков, в которых отображается результат проверки
     let divLeft = document.getElementById('DivLeft');
     let divRight = document.getElementById('DivRight');
+
+    //очистка результирующих полей
+    divLeft.innerHTML = "";
+    divRight.innerHTML = "";
 
     //цикл проверки для левого блока
     for(let i = 0; i<lineArrayLeft.length; i++){
@@ -57,10 +63,24 @@ function test() {
     }
 }
 
-function reader(){
-	var reader = new FileReader();
-	reader.onload = function(e){
-		document.querySelector("#TextAreaLeft").val(e.target.result);
-	};
-	reader.readAsText(document.querySelector("#uploadLeft")[0].files[0], "UTF-8");
-};
+window.onload = function(){
+    //обработчик изменения элемента выбора файла
+    document.getElementById('uploadLeft').addEventListener('change', function(e) { 
+        let reader = new FileReader(); //инициализация FileReader
+        //запись содержимого файла в textarea
+        reader.onload = function(e){
+            document.getElementById('TextAreaLeft').value = e.target.result;
+        };
+        reader.readAsText(document.getElementById('uploadLeft').files[0], "UTF-8");
+    });
+
+    //обработчик изменения элемента выбора файла
+    document.getElementById('uploadRight').addEventListener('change', function(e) { 
+        let reader = new FileReader(); //инициализация FileReader
+        //запись содержимого файла в textarea
+        reader.onload = function(e){
+            document.getElementById('TextAreaRight').value = e.target.result;
+        };
+        reader.readAsText(document.getElementById('uploadRight').files[0], "UTF-8");
+    });
+}

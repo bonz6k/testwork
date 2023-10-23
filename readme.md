@@ -15,8 +15,8 @@ let splitValue = txtAreaValue.split('\n'); //разбиение значения
 ```
 ___
 *Цикл сравнения двух текстовых полей*
-*Для обоих блоков код идентичный*
 -----
+*Для обоих блоков код идентичный*
 ```
 let divLeft = document.getElementById('DivLeft');//инициализация блока, в котором отображается результат проверки
 for(let i = 0; i<lineArrayLeft.length; i++){
@@ -33,4 +33,18 @@ for(let i = 0; i<lineArrayLeft.length; i++){
             spanElement.className = 'green'; //задаем для span параметры стиля
         }
     }
+```
+*Считывание из файла*
+----
+*Для записи содержимого текстового файла в textarea используются функция:*
+```
+//обработчик изменения элемента выбора файла
+    document.getElementById('uploadLeft').addEventListener('change', function(e) { 
+        let reader = new FileReader(); //инициализация FileReader
+        //запись содержимого файла в textarea
+        reader.onload = function(e){
+            document.getElementById('TextAreaLeft').value = e.target.result;
+        };
+        reader.readAsText(document.getElementById('uploadLeft').files[0], "UTF-8");
+    });
 ```
